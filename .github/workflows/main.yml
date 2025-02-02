@@ -1,0 +1,27 @@
+name: PR Check
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+  push:
+    branches:
+      - shakir85-patch-1
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify repo contents
+        run: ls -la /github/workspace
+
+      - name: Run tests
+        run: echo "Run your tests here!"
